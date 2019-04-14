@@ -2,6 +2,19 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
+ * Delete any node in the middle given only access to that node.
+ * @param List 
+ * @param value 
+ */
+const deleteMiddleNode = ( node ) => {
+    let temp = node.next;
+    node.data = temp.data;
+    node.next = temp.next;
+
+    // garbage collect the temp node
+    temp = null;
+}
+/**
  * return the kth to last element when length is not known.
  * For k = 1, return last element, k = 2 return 2nd last element and so on.
  * 
@@ -125,11 +138,15 @@ const insert = (List,datum) => {
  */
 const print = List => {
     let temp = List.Head;
-
+    let output="";
     while(temp) {
-        console.log(temp.data);
+        //console.log(temp.data);
+        output += `${temp.data} -> `
         temp=temp.next;
     }
+
+    output += ' null';
+    console.log(output);
 }
 
 /**
@@ -156,8 +173,17 @@ const main = () => {
     //Print kth to last elem.
     const kthLast=[];
     kthLastElement(List.Head,4,kthLast);
-    console.log(kthLast.length > 0 ? "kth to the last element is: " + kthLast[0].data : "Could not be determined.");
+    console.log(kthLast.length > 0 ? "4th to the last element is: " + kthLast[0].data : "Could not be determined.");
 
+
+    //Delete any middle node
+    console.log("Before Delete Middle Node operation.");
+    print(List);
+
+    deleteMiddleNode(List.Head.next);
+
+    console.log("After Delete Middle Node operation.");
+    print(List);
 }
 
 main();
