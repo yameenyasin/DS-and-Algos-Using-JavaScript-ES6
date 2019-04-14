@@ -2,7 +2,9 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
- * Remove Dupliocates from an unsorted linked list using a temp buffer
+ * Remove Dupliocates from an unsorted linked list using a temp buffer.
+ * Time Complexity: O(n)
+ * Space Complexity: Worst Case O(n) For storing the extra buffer in the form of hash set
  */
 const removeDups = (List) =>{
     if(!List.Head){
