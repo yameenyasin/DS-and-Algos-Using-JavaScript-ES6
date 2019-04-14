@@ -3,17 +3,15 @@ import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
  * Reverse the Linked List
+ * Time Complexity: O(n)
+ * Space: O(n)
  * @param List 
  */
 const reverse = List => {
-    const newList = {
-        Head: null,
-        Tail: null
-    }
-
     const stack = [];
 
     let temp; 
+
     while(List.Head){
         temp = List.Head
         List.Head=List.Head.next;
