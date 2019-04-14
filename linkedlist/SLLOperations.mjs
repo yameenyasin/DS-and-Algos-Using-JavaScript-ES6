@@ -14,6 +14,37 @@ const deleteMiddleNode = ( node ) => {
     // garbage collect the temp node
     temp = null;
 }
+
+/**
+ * Return the kth to last element using iterative approach.
+ * In this approach we will use  pointers. 
+ * @param List 
+ * @param k 
+ */
+const kthToLastIterative = (List,k) => {
+    let p1=List.Head;
+    let p2=List.Head;
+
+    // Move the p1 to k positions
+    for(let i=0; i < k ; i++){
+
+        if(!p1){
+            return;
+        }
+        p1=p1.next;
+    }
+
+    // Now move both p1 and p2 at same speed.
+    while(p1){
+        p1=p1.next;
+        p2=p2.next;
+    }
+
+    if(p2){
+        console.log(`${k}th to the last element is: ${p2.data}`);
+    }
+    
+}
 /**
  * return the kth to last element when length is not known.
  * For k = 1, return last element, k = 2 return 2nd last element and so on.
@@ -184,6 +215,9 @@ const main = () => {
 
     console.log("After Delete Middle Node operation.");
     print(List);
+
+    // Iterative
+    kthToLastIterative(List,5);
 }
 
 main();
