@@ -2,6 +2,44 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
+ * Reverse the Linked List
+ * @param List 
+ */
+const reverse = List => {
+    const newList = {
+        Head: null,
+        Tail: null
+    }
+
+    const stack = [];
+
+    let temp; 
+    while(List.Head){
+        temp = List.Head
+        List.Head=List.Head.next;
+
+        if(List.Head === null){
+            List.Tail=null;
+        }
+
+        temp.next=null;
+        stack.push(temp);
+    }
+
+    while(stack.length > 0){
+        temp = stack.pop();
+
+        if(!List.Head){
+            List.Head = List.Tail = temp;
+        }else{
+            List.Tail.next = temp;
+            List.Tail = temp; 
+        }
+
+    }
+}
+
+/**
  * Delete any node in the middle given only access to that node.
  * @param List 
  * @param value 
@@ -196,7 +234,6 @@ const main = () => {
     })
 
     removeDups(List);
-
     //removeDupsNoBuffer(List);
 
     print(List);
@@ -210,14 +247,17 @@ const main = () => {
     //Delete any middle node
     console.log("Before Delete Middle Node operation.");
     print(List);
-
     deleteMiddleNode(List.Head.next);
-
     console.log("After Delete Middle Node operation.");
     print(List);
 
     // Iterative
     kthToLastIterative(List,5);
+
+    //reverse a linked list
+    console.log("Reverse the Linked List.");
+    reverse(List);
+    print(List);
 }
 
 main();
