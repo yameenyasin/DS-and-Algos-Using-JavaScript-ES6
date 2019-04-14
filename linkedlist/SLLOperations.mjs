@@ -12,7 +12,7 @@ const removeDups = (List) =>{
     }
 
     let temp = List.Head;
-    
+
     const hashSet= new Set();
     hashSet.add(temp.data);
 
@@ -31,7 +31,7 @@ const removeDups = (List) =>{
             // garbage collect the curr by setting it to null
             curr=null;
         }else{
-            hashSet.add(temp.data);
+            hashSet.add(temp.next.data);
             temp = temp.next;
         }
 
