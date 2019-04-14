@@ -2,7 +2,7 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
- * Reverse the Linked List
+ * Reverse the Linked List using a stack
  * Time Complexity: O(n)
  * Space: O(n)
  * @param List 
@@ -35,6 +35,42 @@ const reverse = List => {
         }
 
     }
+}
+
+/**
+ * Reverse a Linked List without using an Extra Buffer
+ * Time: O(n)
+ * Space: O(1)
+ * @param List 
+ */
+const reverseNoBuffer = List => {
+    const newList={
+        Head:null,
+        Tail:null
+    }
+    if(!List.Head){
+        return;
+    }
+
+    while(List.Head){
+        let temp = List.Head;
+        List.Head = List.Head.next;
+
+        if(List.Head === null){
+            List.Tail = null;
+        }
+
+        // insert at head
+        if(!newList.Head){
+            newList.Head=newList.Tail = temp;
+            temp.next=null;
+        }else{
+            temp.next=newList.Head;
+            newList.Head=temp;
+        }
+    }
+
+    Object.assign(List,newList);
 }
 
 /**
@@ -255,6 +291,11 @@ const main = () => {
     //reverse a linked list
     console.log("Reverse the Linked List.");
     reverse(List);
+    print(List);
+
+    //reverse no buffer
+    console.log("Reverse the Linked List without using extra buffer.");
+    reverseNoBuffer(List);
     print(List);
 }
 
