@@ -12,13 +12,9 @@ const removeDups = (List) =>{
     }
 
     let temp = List.Head;
-    const hashSet= new Set();
     
-    if(temp){
-        hashSet.add(temp.data);
-    }else{
-        return;
-    }
+    const hashSet= new Set();
+    hashSet.add(temp.data);
 
     while(temp.next){
         
