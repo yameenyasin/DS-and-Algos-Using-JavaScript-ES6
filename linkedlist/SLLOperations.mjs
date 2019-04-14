@@ -2,11 +2,56 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
- * Remove Dupliocates from an unsorted linked list using a temp buffer.
+ * 
+ * @param List 
+ * Remove Duplicates from an unsorted linked list without using buffer.
+ * Time Complexity: O(n^2)
+ * Space Complexity: O(1)
+ * 
+ */
+const removeDupsNoBuffer = List => {
+    // Empty check
+    if(!List.Head){
+        return;
+    }
+
+    let current=List.Head;
+    
+    while(current){
+
+        let runner=current;
+        // iterate all furture nodes and remove all future nodes that have same value
+        while(runner.next){
+
+            if(current.data === runner.next.data ){
+                let temp = runner.next;
+
+                // reset the tail
+                if(temp === List.Tail){
+                    List.Tail=runner;
+                }
+
+                // adjust the pointer to the next node
+                runner.next = temp.next;
+
+                // garbage collect the deleted node
+                temp=null;    
+                
+            }else{
+                runner=runner.next;
+            }
+        }
+        current = current.next;
+    }
+
+}
+
+/**
+ * Remove Duplicates from an unsorted linked list using a temp buffer.
  * Time Complexity: O(n)
  * Space Complexity: Worst Case O(n) For storing the extra buffer in the form of hash set
  */
-const removeDups = (List) =>{
+const removeDups = List =>{
     if(!List.Head){
         return;
     }
@@ -38,7 +83,6 @@ const removeDups = (List) =>{
     }
 }
 
-
 /**
  * 
  * @param Head : Linked List Head
@@ -58,7 +102,7 @@ const insert = (List,datum) => {
 /**
  * Print List
  */
-const print = (List) => {
+const print = List => {
     let temp = List.Head;
 
     while(temp) {
@@ -83,7 +127,9 @@ const main = () => {
     })
 
     removeDups(List);
-    
+
+    //removeDupsNoBuffer(List);
+
     print(List);
 
 }
