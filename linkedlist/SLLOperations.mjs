@@ -2,6 +2,27 @@
 import SinglyLinkedListNode from './SinglyLinkedList.mjs';
 
 /**
+ * return the kth to last element when length is not known.
+ * For k = 1, return last element, k = 2 return 2nd last element and so on.
+ * 
+ * @param k 
+ */
+const kthLastElement = (node,k,kthLast) => {
+    if(!node){
+        return 0;
+    }else{
+        const revLen = 1 + kthLastElement(node.next,k,kthLast);
+
+        if(revLen === k){
+            console.log("kth to last element is ", node.data);
+            kthLast[0] = node;
+        }
+
+        return revLen;
+    }
+}
+
+/**
  * 
  * @param List 
  * Remove Duplicates from an unsorted linked list without using buffer.
@@ -131,6 +152,11 @@ const main = () => {
     //removeDupsNoBuffer(List);
 
     print(List);
+
+    //Print kth to last elem.
+    const kthLast=[];
+    kthLastElement(List.Head,4,kthLast);
+    console.log(kthLast.length > 0 ? "kth to the last element is: " + kthLast[0].data : "Could not be determined.");
 
 }
 
