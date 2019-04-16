@@ -110,6 +110,28 @@ class BST {
         console.log(node.data);
     }
 
+    /**
+     * Creates a minimal BST from a sorted list of array
+     * @param arr 
+     */
+    createMinimalBST(arr){
+        this.root=this.createBST(arr,0,arr.length -1);
+    }
+
+    createBST(arr,lo,hi){
+        if(hi < lo){
+            return null;
+        }
+
+        let mid=Math.floor((lo+hi)/2);
+        const node = new Node(arr[mid]);
+
+        node.left=this.createBST(arr,lo,mid-1);
+        node.right=this.createBST(arr,mid+1,hi);
+
+        return node;
+    }
+
 
 }
 
