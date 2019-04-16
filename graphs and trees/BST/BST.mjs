@@ -131,6 +131,32 @@ class BST {
 
         return node;
     }
+    /**
+     * Lowest Common Ancestor
+     */
+    lowestCommonAncestor(v1,v2){
+
+        return this.findLCA(this.root,v1,v2);
+
+    }
+
+    findLCA(node,v1,v2){
+        if(node === null){
+            return;
+        }
+
+        if(v1 <= node.data && v2 >= node.data){
+            return node;
+        }
+
+        else if(v1 < node.data && v2 < node.data){
+            return this.findLCA(node.left,v1,v2);
+        }
+
+        else if(v1 > node.data && v2 > node.data){
+            return this.findLCA(node.right,v1,v2);
+        }
+    }
 
 
 }

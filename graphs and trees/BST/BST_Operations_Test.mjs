@@ -20,6 +20,7 @@ import BST from './BST';
      bst.inorder();
      // Post Order Tree tresersal
      bst.postorder();
+
  }
 
  main();
