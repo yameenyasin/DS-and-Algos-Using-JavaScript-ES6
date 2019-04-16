@@ -1,10 +1,8 @@
-/**
- * Representation of a simple Tree/Graph Node
- */
 class Node{
     constructor(data){
         this.data=data;
-        this.children=[];
+        this.right=null;
+        this.left=null;
     }
 }
 
