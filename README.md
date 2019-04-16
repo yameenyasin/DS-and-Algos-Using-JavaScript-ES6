@@ -1,6 +1,4 @@
-# Interview Preparation
-
-I am writing these programs as part of my interview preparation. I hereby authorize anybody to use my code in its original or modified form. 
+# Data Structures and Algorithms using JavaScript ES6
 
 Inorder to run the scripts directly using nodejs and use the ES6 Syntax, node js has included experimantal support for ES6.
 
