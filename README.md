@@ -35,3 +35,5 @@ Inorder to run the scripts directly using nodejs and use the ES6 Syntax, node js
 4. Complete Binary Tree: Every level of the tree is completely filled, except for the last but should be filled from Left to Right. 
 5. Full Binary Tree: Every node has zero or 2 children.
 6. Perfect Binary Tree: Is both Complete as well as Full. Has 2^k-1 nodes. 
+
+## Graphs
