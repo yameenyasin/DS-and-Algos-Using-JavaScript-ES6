@@ -158,6 +158,57 @@ class BST {
         }
     }
 
+    /**
+     * BST Sequence: A binary search tree was created by traversing an array
+     * from left to right, and insertug each element. Given a BST with distinct eleents
+     * print all possible arrays that could have led to this tree.
+     */
+
+    //  bstSequence(){
+    //     const arr = []
+    //     this.findBSTSequence(this.root,arr);
+
+    //     console.log(arr);
+    //  }
+
+    //  findBSTSequence(node,arr){
+
+    //     if(node === null){
+    //         return;
+    //     }
+
+    //     const vlrData = [];
+    //     this.findVLR(node,vlrData);
+
+    //     const vrlData = [];
+    //     this.findVRL(node,vrlData);
+
+    //     //arr.push([...vlrData,...vrlData]);
+
+    //     console.log(vlrData.toString());
+    //     console.log(vrlData.toString());
+    //  }
+
+    //  findVLR(node,arr){
+    //     if(node === null){
+    //         return;
+    //     }
+
+    //     arr.push(node.data);
+    //     this.findBSTSequence(node.left,arr);
+    //     this.findBSTSequence(node.right,arr);
+    //  }
+
+    //  findVRL(node,arr){
+    //     if(node === null){
+    //         return;
+    //     }
+
+    //     arr.push(node.data);
+    //     this.findBSTSequence(node.right,arr);
+    //     this.findBSTSequence(node.left,arr);
+    //  }
+
 
 }
 
