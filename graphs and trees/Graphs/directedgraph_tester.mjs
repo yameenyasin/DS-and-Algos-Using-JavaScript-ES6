@@ -45,3 +45,8 @@ function main(){
 }
 
 main();
+
+/**
+ * Run Command
+ * node --experimental-modules directedgraph_tester.mjs
+ */
