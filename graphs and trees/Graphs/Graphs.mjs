@@ -30,9 +30,9 @@ class Edge{
 }
 
 /**
- * An Un Directed Graph Representation
+ * A Directed Graph Representation
  */
-export class UDGraph{
+export class DGraph{
     constructor(){
         this.nodes={};
     }
