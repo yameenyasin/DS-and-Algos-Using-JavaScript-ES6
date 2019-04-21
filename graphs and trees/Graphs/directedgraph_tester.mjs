@@ -17,6 +17,7 @@ function main(){
     dGraph.addEdge(1,2,"weight 1");
     dGraph.addEdge(1,6,"weight 2");
     dGraph.addEdge(2,3,"weight 3");
+    dGraph.addEdge(3,1,"weight 3");
     dGraph.addEdge(2,4,"weight 3");
     dGraph.addEdge(4,3,"weight 3");
     dGraph.addEdge(3,6,"weight 3");
@@ -41,6 +42,10 @@ function main(){
     console.log("1 -> 7", dGraph.hasPathBFS(1,7)); // false since 7 does not exist
     console.log("1 -> 5", dGraph.hasPathBFS(1,5)); // false 
     console.log("6 -> 1", dGraph.hasPathBFS(6,1)); // false  
+
+    // Graph cycle test
+    console.log("Graph Cycle tests");
+    console.log(dGraph.isCyclic());
     
 }
 

@@ -2,7 +2,7 @@
  * Representation of weighted node of a graph.
  * 
  * id represents the node id
- * data represents the weight
+ * data represents the node weight
  * adjacent represents the adjacency list
  */
 class Node{
@@ -16,9 +16,9 @@ class Node{
 /**
  * Representation of weighted edge of a graph.
  * 
- * id represents the node id
- * data represents the weight
- * adjacent represents the adjacency list
+ * sourceid represents the node id of source node
+ * destid represents the node id of destination node
+ * data represents the weight on edge
  */
 
 class Edge{
@@ -30,7 +30,8 @@ class Edge{
 }
 
 /**
- * A Directed Graph Representation
+ * A Directed Graph Representation.
+ * Both Nodes and Edges have weights. :) 
  */
 export class DGraph{
     constructor(){
@@ -126,6 +127,60 @@ export class DGraph{
                 nextToVisit.push(this.nodes[node.adjacent[i].destid]);
             }
         }
+
+        return false;
+    }
+
+    /** Detect Cycle in Directed Graph */
+    isCyclic(){
+        // set of all unvisited nodes
+        let whiteSet = Object.keys(this.nodes);
+        // set of currently visiting nodes
+        let greySet = new Set();
+        // set of all visited nodes
+        let blackSet = new Set();
+
+        // Iterate through white set untill it is empty
+        while( whiteSet.length > 0){
+            // lets take the first node
+            let curr = whiteSet.shift();
+            if(this.detectCycleDFS(curr,whiteSet,greySet,blackSet)){
+                return true;
+            }
+        }
+        return false;
+    }
+    // helper method to find cycle using DFS
+    detectCycleDFS(curr,whiteSet,greySet,blackSet){
+        // node and its children are already visited
+        if(blackSet.has(curr)){
+            return false;
+        }
+        // node currenlt in visiting state and again introduced by another node
+        // which means there is a cycle
+        if(greySet.has(curr)){
+            return true;
+        }
+        // add the current node to geySet indicating its currently visiting
+        greySet.add(curr);
+        // node
+        let node = this.getNode(curr);
+        
+        for(let i=0; i<node.adjacent.length; i++){
+            whiteSet.splice(whiteSet.indexOf(node.adjacent[i]),1);
+
+            if(greySet.has(node.adjacent[i])){
+                return true;
+            }
+            
+            let r = this.detectCycleDFS(node.adjacent[i].destid,whiteSet,greySet,blackSet);
+
+            if(r){
+                return true;
+            }
+        }
+        greySet.delete(curr);
+        blackSet.add(curr);
 
         return false;
     }
