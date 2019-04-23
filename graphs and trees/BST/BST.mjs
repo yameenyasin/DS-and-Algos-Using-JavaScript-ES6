@@ -209,6 +209,45 @@ class BST {
     //     this.findBSTSequence(node.left,arr);
     //  }
 
+    /**
+     * Print the values of BST in the order of depths
+     */
+    listDepths(){
+        if(!this.root){
+            return;
+        }
+
+        let node = this.root;
+        let level=0;
+        let nextItems=[];
+
+        nextItems.push([node]);
+
+        while(nextItems.length > 0 && nextItems[0].length > 0){
+            let temp = nextItems.shift();
+
+            let len = nextItems.length;
+            nextItems[0] = [];
+
+            console.log("Printing level ",level);
+
+            for(let i=0; i<temp.length;i++){
+                console.log(temp[i].data);
+                
+                // push the left sub tree
+                if(temp[i].left){
+                    nextItems[0].push(temp[i].left);
+                }
+                // push the right sub tree
+                if(temp[i].right){
+                    nextItems[0].push(temp[i].right);
+                }
+            }
+            // increeament the level counter
+            level++;
+        }
+    }
+
 
 }
 
