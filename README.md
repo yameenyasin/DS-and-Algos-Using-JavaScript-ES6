@@ -37,3 +37,9 @@ Inorder to run the scripts directly using nodejs and use the ES6 Syntax, node js
 6. Perfect Binary Tree: Is both Complete as well as Full. Has 2^k-1 nodes. 
 
 ## Graphs
+
+## Heaps
+### Min Heap
+Elements in min heap are smaller than their children. So the smallest element will be at the root.
+### Max Heap
+Its the opposite of the min heap where the elements are greater than their children. So the greatest element will be at the root. 
