@@ -184,4 +184,35 @@ export class DGraph{
 
         return false;
     }
+
+    /** 
+     * Topolocial Sorting
+     */
+    topologicalSort(){
+        let stack=[];
+        let visited = new Set();
+        let vertices = Object.keys(this.nodes);
+
+        vertices.forEach(vertex => {
+            if(!visited.has(vertex)){
+                this.topologicalSortUtil(this.nodes[vertex],stack,visited);
+            }
+        });
+
+        console.log("Topological Sort Order is:", stack);
+    }
+    topologicalSortUtil(node,stack,visited){
+        
+        if(node === null || visited.has(node.id)){
+            return;
+        }
+
+        visited.add(node.id);
+
+        for(let i=0; i < node.adjacent.length; i++){
+            this.topologicalSortUtil(this.nodes[node.adjacent[i].destid],stack,visited);
+        }
+
+        stack.unshift(node.id);
+    }
 }
