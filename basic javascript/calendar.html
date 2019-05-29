@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple Month View Calendar</title>
+  </head>
+  <body>
+    <div class="conatiner">
+      <h1 id="title"></h1>
+      <table id="calendar">
+        <thead>
+          <tr>
+            <td>Sun</td>
+            <td>Mon</td>
+            <td>Tue</td>
+            <td>Web</td>
+            <td>Thu</td>
+            <td>Fri</td>
+            <td>Sat</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id="footer">
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+      let months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      let today = new Date();
+      let currYear = today.getFullYear();
+      let currMonth = today.getMonth();
+
+      // Events Listeners
+      const next = document.querySelector("#next");
+      next.addEventListener("click", nextFn);
+
+      const prev = document.querySelector("#prev");
+      prev.addEventListener("click", prevFn);
+
+      //   Event Handlers
+      function nextFn() {
+        currYear = currMonth === 11 ? currYear + 1 : currYear;
+        currMonth = (currMonth + 1) % 12;
+
+        showCalendar(currYear, currMonth);
+      }
+
+      function prevFn() {
+        currYear = currMonth === 0 ? currYear - 1 : currYear;
+        currMonth = currMonth === 0 ? 11 : currMonth - 1;
+
+        showCalendar(currYear, currMonth);
+      }
+
+      // Helper function
+      function showCalendar(year, month) {
+        // Set the title
+        let title = document.querySelector("#title");
+        title.textContent = months[month] + " " + year;
+
+        const firstDay = new Date(year, month).getDay(); // 0 Sunday till 6 Saturday ... Tuesday = 2
+        const totalDays = daysInMonth(year, month);
+        let dayCounter = 1;
+
+        let table = document.querySelector("#calendar tbody");
+        table.innerHTML = "";
+
+        for (let week = 1; week <= 6; week++) {
+          // week 1 to week 5
+          let tr = document.createElement("tr");
+          for (let day = 0; day <= 6 && dayCounter <= totalDays; day++) {
+            let td = document.createElement("td");
+            if (week === 1 && day < firstDay) {
+              // create an empty cell
+              let text = document.createTextNode("");
+              td.appendChild(text);
+            } else {
+              let text = document.createTextNode(dayCounter);
+              td.appendChild(text);
+              dayCounter++;
+            }
+
+            tr.appendChild(td);
+          }
+
+          table.appendChild(tr);
+        }
+      }
+
+      function daysInMonth(year, month) {
+        return 32 - new Date(year, month, 32).getDate();
+      }
+
+      window.addEventListener("DOMContentLoaded", event => {
+        showCalendar(currYear, currMonth);
+      });
+    </script>
+  </body>
+</html>
